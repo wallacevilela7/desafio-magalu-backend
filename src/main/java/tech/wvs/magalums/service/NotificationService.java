@@ -5,6 +5,8 @@ import tech.wvs.magalums.controller.dto.ScheduledNotificationDto;
 import tech.wvs.magalums.domain.Notification;
 import tech.wvs.magalums.repository.NotificationRepository;
 
+import java.util.Optional;
+
 @Service
 public class NotificationService {
 
@@ -16,5 +18,9 @@ public class NotificationService {
 
     public void scheduledNotification(ScheduledNotificationDto dto) {
         notificationRepository.save(dto.toNotification());
+    }
+
+    public Optional<Notification> findById(Long notificationId) {
+        return notificationRepository.findById(notificationId);
     }
 }
