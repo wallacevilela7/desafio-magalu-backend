@@ -3,6 +3,7 @@ package tech.wvs.magalums.service;
 import org.springframework.stereotype.Service;
 import tech.wvs.magalums.controller.dto.ScheduledNotificationDto;
 import tech.wvs.magalums.domain.Notification;
+import tech.wvs.magalums.domain.Status;
 import tech.wvs.magalums.repository.NotificationRepository;
 
 import java.util.Optional;
@@ -22,5 +23,14 @@ public class NotificationService {
 
     public Optional<Notification> findById(Long notificationId) {
         return notificationRepository.findById(notificationId);
+    }
+
+    public void cancelNotification(Long notificationId) {
+        var notification = this.findById(notificationId);
+
+        if (notification.isPresent()) {
+            notification.get().setStatus(Status.Values.CANCELLED.toStatus());
+            notificationRepository.save(notification.get());
+        }
     }
 }
