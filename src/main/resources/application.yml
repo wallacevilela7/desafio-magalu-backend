@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: magalu-ms
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/magalu-db
+    username: myuser
+    password: secret123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
